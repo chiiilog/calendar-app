@@ -1,6 +1,8 @@
 <script>
 import FullCalendar from "@fullcalendar/vue3";
-import dayGridPlugin from "@fullcalendar/daygrid";
+import multiMonthPlugin from "@fullcalendar/multimonth";
+import interactionPlugin from "@fullcalendar/interaction";
+import jaLocale from "@fullcalendar/core/locales/ja"; // 日本語化用
 
 export default {
   components: {
@@ -9,10 +11,18 @@ export default {
   data: function () {
     return {
       calendarOptions: {
-        plugins: [dayGridPlugin],
-        initialView: "dayGridMonth",
-        weekends: false,
+        // カレンダーで使用するプラグイン
+        plugins: [multiMonthPlugin, interactionPlugin],
+        initialView: "multiMonthYear",
+        // 土日を表示
+        weekends: true,
         events: [{ title: "Meeting", start: new Date() }],
+        locale: jaLocale,
+
+        // 数字のみの日付
+        dayCellContent: function (e) {
+          return e.dayNumberText.replace("日", "");
+        },
       },
     };
   },
@@ -20,6 +30,5 @@ export default {
 </script>
 
 <template>
-  <h1>Demo App</h1>
-  <FullCalendar :options="calendarOptions" />
+  <FullCalendar :options="calendarOptions" :locale="locale" />
 </template>
