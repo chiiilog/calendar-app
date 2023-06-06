@@ -21,6 +21,11 @@ const routes = [
     name: "calendar",
     component: () => import("../components/CalendarView"),
   },
+  {
+    path: "/holidaylist",
+    name: "holidaylist",
+    component: () => import("../components/HolidayList"),
+  },
 ];
 
 const router = createRouter({

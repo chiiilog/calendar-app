@@ -2,7 +2,8 @@
   <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> |
-    <router-link to="/calendar">Calendar</router-link>
+    <router-link to="/calendar">Calendar</router-link> |
+    <router-link to="/holidaylist">HolidayList</router-link>
   </nav>
   <router-view />
 </template>
