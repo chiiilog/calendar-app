@@ -7,7 +7,7 @@ import holidayJp from "@holiday-jp/holiday_jp";
 
 export default {
   components: {
-    FullCalendar, // make the <FullCalendar> tag available
+    FullCalendar,
   },
   data() {
     return {
@@ -19,7 +19,8 @@ export default {
         weekends: true,
         events: this.getEvents(),
         locale: jaLocale,
-
+        // 日付セルのカスタムクラスを設定
+        dayCellClassNames: this.dayCellClassNames,
         // 数字のみの日付
         dayCellContent: function (e) {
           return e.dayNumberText.replace("日", "");
@@ -37,9 +38,22 @@ export default {
 
       return holidays.map((holiday) => ({
         title: holiday.name,
-        start: new Date(holiday.date), // タイムスタンプをDateオブジェクトに変換する
+        // タイムスタンプをDateオブジェクトに変換する
+        start: new Date(holiday.date),
         allDay: true,
       }));
+    },
+    dayCellClassNames(arg) {
+      const dayNumber = arg.date.getDay();
+      if (dayNumber === 6) {
+        // 土曜日のセルにblueクラスを追加
+        return "blue";
+      }
+      if (dayNumber === 0) {
+        // 日曜日のセルにredクラスを追加
+        return "red";
+      }
+      return "";
     },
   },
 };
@@ -48,3 +62,13 @@ export default {
 <template>
   <FullCalendar :options="calendarOptions" :locale="locale" />
 </template>
+
+<style>
+.blue {
+  background-color: lightskyblue;
+}
+
+.red {
+  background-color: lightcoral;
+}
+</style>
