@@ -22,6 +22,11 @@ const routes = [
     component: () => import("../components/CalendarView"),
   },
   {
+    path: "/googlecalendar",
+    name: "googlecalendar",
+    component: () => import("../components/GoogleCalendarView"),
+  },
+  {
     path: "/holidaylist",
     name: "holidaylist",
     component: () => import("../components/HolidayList"),

@@ -43,3 +43,6 @@ npm install vue-router
 
 ##構文チェックツール
 yarn run lint --fix
+
+## add @fullcalendar/google-calendar
+yarn add @fullcalendar/core @fullcalendar/daygrid @fullcalendar/google-calendar
